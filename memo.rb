@@ -19,8 +19,8 @@ if memo_type == 1
   
   # ■■■■■■■■■ユーザーへの指示（メモ内容の入力）■■■■■■■■■
   puts "メモしたい内容を入力してください"
-  puts "入力が完了したら「Enter」を押してください"
-  file_contents = gets.chomp
+  puts "入力が完了したら「ctrl + D」を押してください"
+  file_contents = STDIN.read
   CSV.open("#{file_name}.csv", "w") do |csv|
     csv << ["#{file_contents}"]
   end
@@ -56,12 +56,12 @@ elsif memo_type == 2
   puts "------------------------------------------------------------"
   
   # ■■■■■■■■■指定したファイルに別の内容を上書き■■■■■■■■■
-  puts "新しくメモしたい内容を入力してください"
-  puts "入力が完了したら「Enter」を押してください"
-  file_contents = gets.chomp
-  CSV.open("#{file_name}.csv", "w") do |csv|
+  puts "メモに追加したい内容を入力してください"
+  puts "入力が完了したら「ctrl + D」を押してください"
+  file_contents = STDIN.read
+  CSV.open("#{file_name}.csv", "a") do |csv|
     csv << ["#{file_contents}"]
   end
+  puts "------------------------------------------------------------"
+  puts "「#{file_name}.csv」に新しく追加しました"
 end
-
-
